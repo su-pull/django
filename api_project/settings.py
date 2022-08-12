@@ -56,8 +56,8 @@ MIDDLEWARE = [
 ]
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:3000",
-    "https://engineers-box-app-kynp76vkbq-an.a.run.app",
-    "https://engineers-box.app",
+    "https://engineers-box-net-kynp76vkbq-an.a.run.app",
+    "https://engineers-box.net",
 ]
 SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('JWT',),
