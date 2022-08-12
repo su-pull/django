@@ -10,7 +10,7 @@ class CreateUserView(generics.CreateAPIView):
     permission_classes = (AllowAny,)
 
 
-# test
+# test なんとかできたーw
 class DocsListView(generics.ListAPIView):
     queryset = Docs.objects.all().order_by('created_at')
     serializer_class = DocsSerializer
