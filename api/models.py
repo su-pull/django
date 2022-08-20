@@ -24,10 +24,10 @@ class Talk(models.Model):
 
     title_ja = models.CharField(max_length=100)
     content_ja = models.TextField()
-    description_ja = models.TextField(null=True, blank=True, default="")
+    description_ja = models.TextField(default="")
     title_en = models.CharField(max_length=100)
     content_en = models.TextField()
-    description_en = models.TextField(null=True, blank=True, default="")
+    description_en = models.TextField(default="")
     slug = models.SlugField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
