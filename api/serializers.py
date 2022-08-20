@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Docs, Post
+from .models import Docs, Talk
 from django.contrib.auth.models import User
 
 
@@ -20,13 +20,12 @@ class DocsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Docs
-        fields = ('id', 'title_ja', 'content_ja', 'description_ja',
-                  'title_en', 'content_en', 'description_en', 'slug', 'created_at')
+        fields = ('id', 'title_ja', 'content_ja', 'description_ja', 'title_en', 'content_en', 'description_en', 'slug', 'created_at')
 
 
-class PostSerializer(serializers.ModelSerializer):
+class TalkSerializer(serializers.ModelSerializer):
     created_at = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S", read_only=True)
 
     class Meta:
-        model = Post
-        fields = ('id', 'title_ja', 'content_ja', 'title_en', 'content_en', 'slug', 'created_at')
+        model = Talk
+        fields = ('id', 'title_ja', 'content_ja', 'description_ja', 'title_en', 'content_en', 'description_en', 'slug', 'created_at')

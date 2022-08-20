@@ -14,6 +14,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='post',
             name='title',
-            field=models.CharField(max_length=100, verbose_name=api.models.Post),
+            field=models.CharField(max_length=100, verbose_name=api.models.Talk),
         ),
     ]

@@ -1,8 +1,8 @@
 from rest_framework.permissions import AllowAny
 from rest_framework import generics
 from rest_framework import viewsets
-from .serializers import UserSerializer, DocsSerializer, PostSerializer
-from .models import Docs, Post
+from .serializers import UserSerializer, DocsSerializer, TalkSerializer
+from .models import Docs, Talk
 
 
 class CreateUserView(generics.CreateAPIView):
@@ -24,15 +24,15 @@ class DocsRetrieveView(generics.RetrieveAPIView):
     lookup_field = 'slug'
 
 
-class PostListView(generics.ListAPIView):
-    queryset = Post.objects.all()
-    serializer_class = PostSerializer
+class TalkListView(generics.ListAPIView):
+    queryset = Talk.objects.all()
+    serializer_class = TalkSerializer
     permission_classes = (AllowAny,)
 
 
-class PostRetrieveView(generics.RetrieveAPIView):
-    queryset = Post.objects.all()
-    serializer_class = PostSerializer
+class TalkRetrieveView(generics.RetrieveAPIView):
+    queryset = Talk.objects.all()
+    serializer_class = TalkSerializer
     permission_classes = (AllowAny,)
     lookup_field = 'slug'
 

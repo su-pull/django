@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import Docs, Post
+from .models import Docs, Talk
 
 admin.site.register(Docs)
-admin.site.register(Post)
+admin.site.register(Talk)
 
