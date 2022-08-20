@@ -20,7 +20,8 @@ class DocsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Docs
-        fields = ('id', 'title_ja', 'content_ja', 'title_en', 'content_en', 'slug', 'created_at')
+        fields = ('id', 'title_ja', 'content_ja', 'description_ja',
+                  'title_en', 'content_en', 'description_en', 'slug', 'created_at')
 
 
 class PostSerializer(serializers.ModelSerializer):
