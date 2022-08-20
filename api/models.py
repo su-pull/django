@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+# null=True, blank=True
 
 
 class Docs(models.Model):
@@ -23,11 +24,11 @@ class Docs(models.Model):
 class Talk(models.Model):
 
     title_ja = models.CharField(max_length=100)
-    content_ja = models.TextField(default="t")
-    description_ja = models.TextField(default="t")
+    content_ja = models.TextField()
+    description_ja = models.TextField()
     title_en = models.CharField(max_length=100)
-    content_en = models.TextField(default="t")
-    description_en = models.TextField(default="t")
+    content_en = models.TextField()
+    description_en = models.TextField()
     slug = models.SlugField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
