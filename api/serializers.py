@@ -37,3 +37,4 @@ class BuildSerializer(serializers.ModelSerializer):
     class Meta:
         model = Build
         fields = ('id', 'title_ja', 'content_ja', 'description_ja', 'title_en', 'content_en', 'description_en', 'slug', 'created_at')
+
