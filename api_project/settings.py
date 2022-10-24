@@ -23,8 +23,11 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = 'RENDER' not in os.environ
 
 
-ALLOWED_HOSTS = ['engineers-box-backend-rest-api.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['django-render-g6c1.onrender.com', '127.0.0.1']
+# engineers-box-backend-rest-api.herokuapp.com
 
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME: ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 # Application definition
 
