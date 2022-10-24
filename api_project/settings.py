@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
-import dj_database_url
 from datetime import timedelta
 from decouple import config
 from dj_database_url import parse as dburl
@@ -24,8 +23,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = 'RENDER' not in os.environ
 
 
-ALLOWED_HOSTS = ['django-render-g6c1.onrender.com', '127.0.0.1']
-# engineers-box-backend-rest-api.herokuapp.com
+ALLOWED_HOSTS = ['engineers-box-backend-rest-api.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -46,6 +44,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -99,17 +98,9 @@ WSGI_APPLICATION = 'api_project.wsgi.application'
 
 default_dburl = 'sqlite:///' + str(BASE_DIR / "db.sqlite3")
 
-# Database
-# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
 DATABASES = {
-    'default': dj_database_url.config(default='postgresql://postgres:postgres@localhost:5432/api_project', conn_max_age=600)
+    'default': config('DATABASE_URL', default=default_dburl, cast=dburl)
 }
-
-
-# DATABASES = {
-#     'default': config('DATABASE_URL', default=default_dburl, cast=dburl)
-# }
 
 
 # Password validation
@@ -150,6 +141,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = str(BASE_DIR / 'staticfiles')
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 SUPERUSER_NAME = config("SUPERUSER_NAME")
 SUPERUSER_EMAIL = config("SUPERUSER_EMAIL")
