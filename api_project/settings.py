@@ -8,12 +8,12 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 from datetime import timedelta
 from decouple import config
 from dj_database_url import parse as dburl
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -140,3 +140,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = str(BASE_DIR / 'staticfiles')
+
+SUPERUSER_NAME = config("SUPERUSER_NAME")
+SUPERUSER_EMAIL = config("SUPERUSER_EMAIL")
+SUPERUSER_PASSWORD = config("SUPERUSER_PASSWORD")
