@@ -8,6 +8,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 from datetime import timedelta
 from decouple import config
 from dj_database_url import parse as dburl
@@ -18,8 +19,8 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
-DEBUG = config('DEBUG')
+SECRET_KEY = os.environ.get('SECRET_KEY')
+DEBUG = 'RENDER' not in os.environ
 
 
 ALLOWED_HOSTS = ['engineers-box-backend-rest-api.herokuapp.com', '127.0.0.1']
