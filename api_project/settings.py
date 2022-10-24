@@ -8,10 +8,11 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-import os
 from datetime import timedelta
+import dj_database_url
+import os
 from decouple import config
-from dj_database_url import parse as dburl
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
@@ -19,15 +20,17 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY', default='local_secret_here')
 DEBUG = 'RENDER' not in os.environ
 
 
-ALLOWED_HOSTS = ['django-render-g6c1.onrender.com', '127.0.0.1']
+ALLOWED_HOSTS = []
+# 'django-render-g6c1.onrender.com', '127.0.0.1'
 # engineers-box-backend-rest-api.herokuapp.com
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
-if RENDER_EXTERNAL_HOSTNAME: ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 # Application definition
 
@@ -47,7 +50,6 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -97,13 +99,16 @@ WSGI_APPLICATION = 'api_project.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
-default_dburl = 'sqlite:///' + str(BASE_DIR / "db.sqlite3")
-
-DATABASES = {
-    'default': config('DATABASE_URL', default=default_dburl, cast=dburl)
-}
+# https://docs.djangoproject.com/en/3.1/ref/settings/#databases=
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': 'mydatabase',
+        }
+    }
+else:
+    DATABASES = {"default": dj_database_url.config()}
 
 
 # Password validation
@@ -144,9 +149,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = str(BASE_DIR / 'staticfiles')
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 SUPERUSER_NAME = config("SUPERUSER_NAME")
 SUPERUSER_EMAIL = config("SUPERUSER_EMAIL")
