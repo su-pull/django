@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
 from datetime import timedelta
 from decouple import config
 from dj_database_url import parse as dburl
@@ -97,9 +98,17 @@ WSGI_APPLICATION = 'api_project.wsgi.application'
 
 default_dburl = 'sqlite:///' + str(BASE_DIR / "db.sqlite3")
 
+# Database
+# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
+
 DATABASES = {
-    'default': config('DATABASE_URL', default=default_dburl, cast=dburl)
+    'default': dj_database_url.config(default='postgresql://postgres:postgres@localhost:5432/api_project', conn_max_age=600)
 }
+
+
+# DATABASES = {
+#     'default': config('DATABASE_URL', default=default_dburl, cast=dburl)
+# }
 
 
 # Password validation
