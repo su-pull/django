@@ -23,5 +23,6 @@ services:
       - key: SECRET_KEY
         generateValue: true
       - key: WEB_CONCURRENCY
-        value: 4
-    autoDeploy: true
+        value: 2
+      - key: DJANGO_SUPERUSER_PASSWORD
+        generateValue: true
