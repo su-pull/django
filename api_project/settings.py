@@ -11,7 +11,7 @@ from pathlib import Path
 from datetime import timedelta
 import dj_database_url
 import os
-# from decouple import config
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
@@ -149,3 +149,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = str(BASE_DIR / 'staticfiles')
+
+
+SUPERUSER_NAME = config("SUPERUSER_NAME")
+SUPERUSER_EMAIL = config("SUPERUSER_EMAIL")
+SUPERUSER_PASSWORD = config("SUPERUSER_PASSWORD")
