@@ -24,7 +24,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY', default='local_secret_here')
 DEBUG = 'RENDER' not in os.environ
 
 
-ALLOWED_HOSTS = ['https://django-render-g6c1.onrender.com/']
+ALLOWED_HOSTS = []
+# 'https://django-render-g6c1.onrender.com/'
 # 'django-render-g6c1.onrender.com', '127.0.0.1'
 # engineers-box-backend-rest-api.herokuapp.com
 
